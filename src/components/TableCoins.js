@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import { CoinDetail } from "./CoinDetail";
 import { CoinRow } from "./CoinRow";
 
-const titles = ["#", "Coin", "Price", "Price Change", " 24hs Highest"];
-
-
+const titles = ["#", "Coin", "Price", "24hsChange", " 24hs Highest"];
 
 export const TableCoins = ({ data, filtro, setIsShow, isShow }) => {
-
-  const [coinSelected, setCoinSelected] = useState({})
+  const [coinSelected, setCoinSelected] = useState({});
 
   const filterTable = data.filter(
     (el) =>
@@ -18,18 +15,32 @@ export const TableCoins = ({ data, filtro, setIsShow, isShow }) => {
 
   return (
     <>
-      {isShow && <CoinDetail coinSelected={coinSelected} setCoinSelected={setCoinSelected} ></CoinDetail>}
+      {isShow && (
+        <CoinDetail
+          coinSelected={coinSelected}
+          setCoinSelected={setCoinSelected}
+        ></CoinDetail>
+      )}
       <table className="table table-dark mt-4 table-hover">
         <thead>
           <tr>
+            
             {titles.map((el, index) => (
-              <th key={index}>{el}</th>
+              <th key={index}><u>{el}</u></th>
             ))}
+            
           </tr>
         </thead>
         <tbody>
           {filterTable.map((el, index) => (
-            <CoinRow coin={el} key={index} index={index + 1} setIsShow={setIsShow} isShow={isShow} setCoinSelected={setCoinSelected} coinSelected={coinSelected}></CoinRow>
+            <CoinRow
+              coin={el}
+              key={index}
+              index={index + 1}
+              setIsShow={setIsShow}
+              isShow={isShow}
+              setCoinSelected={setCoinSelected}
+            ></CoinRow>
           ))}
         </tbody>
       </table>

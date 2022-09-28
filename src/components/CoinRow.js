@@ -4,7 +4,7 @@ import { faArrowAltCircleUp } from "@fortawesome/free-solid-svg-icons";
 import { faArrowAltCircleDown } from "@fortawesome/free-solid-svg-icons";
 
 
-export const CoinRow = ({ coin, index, setIsShow, isShow, coinSelected, setCoinSelected }) => {
+export const CoinRow = ({ coin, index, setIsShow, isShow, setCoinSelected }) => {
 
   const round = (value) => {
     return value.toFixed(2);
@@ -13,7 +13,7 @@ export const CoinRow = ({ coin, index, setIsShow, isShow, coinSelected, setCoinS
   const handleClick = (coin) => {
     setIsShow(!isShow)
     setCoinSelected(coin);
-    console.log(coin);
+    //console.log(coin); // JSON Con moneda seleccionada 
   }
 
   const uppercase = (str) => {
@@ -27,7 +27,6 @@ export const CoinRow = ({ coin, index, setIsShow, isShow, coinSelected, setCoinS
         <img
           src={coin.image}
           alt={coin.name}
-          style={{ width: "3%" }}
           className="me-4 img-fluid"
         ></img>
         <span>{uppercase(coin.name)}</span>

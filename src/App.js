@@ -7,6 +7,8 @@ function App() {
   const [search, setSearch] = useState("");
   const [isShow, setIsShow] = useState(false);
 
+  // CALL API START 
+
   const getData = async () => {
     const URL =
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false";
@@ -18,6 +20,7 @@ function App() {
       .then((data) => setCoins(data));
   };
 
+  // CALL API END 
 
   useEffect(() => {
     getData();
@@ -31,10 +34,20 @@ function App() {
           type="text"
           placeholder="Buscar cripto"
           className="form-control bg-dark text-light border-0 mt-4 text-center"
-          onChange={e => setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
         ></input>
-        <TableCoins data={coins} filtro={search} setIsShow={setIsShow} isShow={isShow}></TableCoins>
+        <TableCoins
+          data={coins}
+          filtro={search}
+          setIsShow={setIsShow}
+          isShow={isShow}
+        ></TableCoins>
       </div>
+      <script>
+        {window.onclick = (e) => {
+          if (e.target.localName === 'html' && isShow) setIsShow(false)     
+        }}
+      </script>
     </div>
   );
 }
